@@ -2,12 +2,14 @@
 
 Experimental. An AutoHotkey script to add keyboard shortcuts to steam browser windows. Currently just supports Ctrl-W to close a tab.
 
-# Caveats
+### Caveats
 * Only works when tab close X button is visible
 
-# Ideas
-[X] Ctrl-W close
-[ ] Ctrl-Tab next tab
-[ ] Ctrl-Shift-T reopen last closed tab
+### Feature Ideas
+- ~Ctrl-W close~
+
+- Ctrl-Tab next tab
+
+- Ctrl-Shift-T reopen last closed tab
 
 
