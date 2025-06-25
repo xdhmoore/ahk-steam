@@ -17,10 +17,16 @@ class Navigation {
 
    InActiveTabColor := "0E141B" ; maybe not exact
    ActiveTabColor := "3D4450"
+   IsBrowser := True
 
-   __New(AhkId) {
-      this.AhkId := AhkId
-      this.CurrentTab := this.FindCurrentTab()
+   __New() {
+      this.AhkId := WinActive("Steam - Browser")
+      if (!this.AhkId) {
+         this.AhkId := WinActive("Steam")
+         this.IsBrowser := False
+      } else {
+         this.CurrentTab := this.FindCurrentTab()
+      }
    }
 
    FindCurrentTab() {
@@ -41,7 +47,17 @@ class Navigation {
    }
 
    CloseCurrentTab() {
-      this.CurrentTab.Close()
+      if (this.IsBrowser) {
+         this.CurrentTab.Close()
+      }
+   }
+
+   ReloadTab() {
+      if (this.IsBrowser) {
+         ControlClick("X82 Y86", "ahk_id " . this.AhkId)
+      } else {
+         ControlClick("X25 Y77", "ahk_id " . this.AhkId)
+      }
    }
 
    NextTab() {
@@ -50,11 +66,15 @@ class Navigation {
 
 }
 
-Main() {
-   ; AhkId := WinActive("Steam - Browser")
-   AhkId := WinExist("Steam - Browser")
-   Navigation(AhkId).CloseCurrentTab()
+CloseCurrentTab() {
+   Navigation().CloseCurrentTab()
 }
 
-HotIfWinActive("Steam - Browser")
-Hotkey("^w", (*) => Main())
+ReloadTab() {
+   Navigation().ReloadTab()
+}
+
+;HotIfWinActive("Steam*")
+Hotkey("^w", (*) => CloseCurrentTab())
+Hotkey("^+r", (*) => ReloadTab())
+Hotkey("^r", (*) => ReloadTab())
