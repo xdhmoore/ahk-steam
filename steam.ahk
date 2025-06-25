@@ -74,7 +74,7 @@ ReloadTab() {
    Navigation().ReloadTab()
 }
 
-;HotIfWinActive("Steam*")
+HotIfWinActive("Steam")
 Hotkey("^w", (*) => CloseCurrentTab())
 Hotkey("^+r", (*) => ReloadTab())
 Hotkey("^r", (*) => ReloadTab())
