@@ -54,7 +54,7 @@ class Navigation {
 
    ReloadTab() {
       if (this.IsBrowser) {
-         ControlClick("X82 Y86", "ahk_id " . this.AhkId)
+         ControlClick("X82 Y88", "ahk_id " . this.AhkId)
       } else {
          ControlClick("X25 Y77", "ahk_id " . this.AhkId)
       }
